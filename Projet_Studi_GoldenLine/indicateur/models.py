@@ -20,17 +20,18 @@ class Client(models.Model):
     mail = models.CharField(max_length=100)
     nb_enfant = models.IntegerField()
     ville = models.CharField(max_length=25)
-    id_csp = models.ForeignKey(Csp, related_name='client_csp', on_delete=models.DO_NOTHING)
-
+    id_csp = models.ForeignKey(Csp, related_name='csps', on_delete=models.DO_NOTHING, default='6')
+    
 class Collecte(models.Model):
     id_collecte = models.AutoField(primary_key=True)
     prix_categorie = models.DecimalField(max_digits=8, decimal_places=2)
     date_collecte = models.DateTimeField(auto_now_add=True)
+    montant_achat = models.DecimalField(max_digits=5, decimal_places=2)
     id_client = models.ForeignKey(Client, related_name='collectes', on_delete=models.DO_NOTHING)
     id_article = models.ForeignKey(Article, related_name='collectes', on_delete=models.DO_NOTHING)
     qte_article = models.IntegerField()
-    montant_achat = models.DecimalField(max_digits=5, decimal_places=2)
-
+    
     def save(self):
          self.montant_achat = self.id_article.prix_unitaire * self.qte_article
          super().save()
+ 
