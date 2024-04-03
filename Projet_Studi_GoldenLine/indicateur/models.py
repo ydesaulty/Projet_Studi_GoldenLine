@@ -26,7 +26,7 @@ class Collecte(models.Model):
     id_collecte = models.AutoField(primary_key=True)
     prix_categorie = models.DecimalField(max_digits=8, decimal_places=2)
     date_collecte = models.DateTimeField(auto_now_add=True)
-    montant_achat = models.DecimalField(max_digits=5, decimal_places=2)
+    montant_achat = models.DecimalField(max_digits=10, decimal_places=2)
     id_client = models.ForeignKey(Client, related_name='collectes', on_delete=models.DO_NOTHING)
     id_article = models.ForeignKey(Article, related_name='collectes', on_delete=models.DO_NOTHING)
     qte_article = models.IntegerField()
