@@ -2,3 +2,4 @@ django
 psycopg2
 djangorestframework
 django-filter
+drf-yasg
