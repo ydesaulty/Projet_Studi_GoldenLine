@@ -18,8 +18,14 @@ from django.contrib import admin
 from django.urls import path
 
 from .views import index
+from django.urls.conf import include
+from rest_framework import routers
+from indicateur.urls import router as indicateur_routeur
+
+router = routers.DefaultRouter()
+router.registry.extend(indicateur_routeur.registry)
 
 urlpatterns = [
-    path('', index, name="index"),
     path('admin/', admin.site.urls),
+    path('', include(router.urls))
 ]
