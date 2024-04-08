@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 
 from .views import index
-from django.conf.urls import include, re_path
+from django.urls import include, re_path
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import routers, permissions
@@ -28,7 +28,7 @@ schema_view = get_schema_view(
    openapi.Info(
       title="Collecte API",
       default_version='v1',
-      description="API utilisee pour générer un indicateur de panier moyen",
+      description="API utilisee pour generer un indicateur de panier moyen",
       contact=openapi.Contact(email="yrae9@hotmail.com"),      
    ),
    public=True,

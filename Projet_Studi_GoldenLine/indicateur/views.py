@@ -1,15 +1,22 @@
 from django.shortcuts import render
 from rest_framework import viewsets
+from rest_framework.routers import DefaultRouter
 
-from indicateur.models import Collecte, Article, Csp
+from indicateur.models import Collecte, Article, Csp, Client
 
 from indicateur.serializers import CollecteSerializer, ArticleSerializer, CspSerializer
 
 class CollecteViewSet(viewsets.ModelViewSet):
     
-    queryset = Collecte.objects.all()
     serializer_class = CollecteSerializer
-    filterset_fields = ['date_collecte', 'montant_achat']
+
+    def get_queryset(self):
+        queryset = Collecte.objects.filter()
+        id_client = self.request.GET.get('id_client')
+        if id_client :
+            queryset = queryset.filter(id_client=id_client)
+        return queryset
+         
 
 class ArticleViewSet(viewsets.ModelViewSet):
     
@@ -19,9 +26,8 @@ class ArticleViewSet(viewsets.ModelViewSet):
     search_fields = ['description']
 
 class CspViewSet(viewsets.ModelViewSet):
-    
-    queryset = Csp.objects.all()
-    serializer_class = CspSerializer
-    filterset_fields = ['id_csp', 'csp_lbl']
-    search_fields = ['csp_lbl']
 
+    serializer_class = CspSerializer
+    
+    def get_queryset(self):
+        return Csp.objects.filter()
