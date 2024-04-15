@@ -31,7 +31,7 @@ class Collecte(models.Model):
     id_article = models.ForeignKey(Article, related_name='collectes', on_delete=models.DO_NOTHING)
     qte_article = models.IntegerField()
     
-    def save(self):
+    def save(self, *args, **kwargs):
          self.montant_achat = self.id_article.prix_unitaire * self.qte_article
-         super().save()
+         super().save(*args, **kwargs)
  
