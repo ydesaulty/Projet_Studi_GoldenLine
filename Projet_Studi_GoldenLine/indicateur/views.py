@@ -39,24 +39,27 @@ class CombinedModelViewSet(viewsets.ModelViewSet):
     filterset_fields = {
         'id_client__id_csp__csp_lbl': ['exact'],
         'id_article__categorie_achat': ['exact'],
-        'date_collecte': ['icontains']
+        'date_collecte': ['gte', 'lte']
     }
 
     def get_queryset(self):
         queryset = super().get_queryset()
         csp = self.request.query_params.get('csp')
         category = self.request.query_params.get('cat_achat')
-        period = self.request.query_params.get('period')
+        start_date = self.request.query_params.get('start_date')  # Nouveau paramètre
+        end_date = self.request.query_params.get('end_date')  # Nouveau paramètre
 
-        print(f"csp: {csp}, cat_achat: {category}, period: {period}")  # Impression de débogage
+        print(f"csp: {csp}, cat_achat: {category}, start_date: {start_date}, end_date: {end_date}")  # Impression de débogage
 
         if csp:
             queryset = queryset.filter(id_client__id_csp__csp_lbl=csp)
         if category:
             queryset = queryset.filter(id_article__categorie_achat=category)
-        if period:
-            queryset = queryset.filter(date_collecte__icontains=period)
-
+        if start_date:
+            queryset = queryset.filter(date_collecte__gte=start_date)
+        if end_date:
+            queryset = queryset.filter(date_collecte__lte=end_date)
+        
         print(f"Queryset: {queryset.query}")  # Impression de débogage
 
         return queryset
