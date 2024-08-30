@@ -3,12 +3,38 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.routers import DefaultRouter
 
+from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework import status
+
 from indicateur.models import Collecte, Article, Csp, Client
 
 from indicateur.serializers import CollecteSerializer, ArticleSerializer, CspSerializer, CombinedSerializer
 
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
+
+class HomeView(APIView):
+     
+   permission_classes = (IsAuthenticated, )
+   def get(self, request):
+        content = {'message': 'Welcome to the JWT Authentication page using React Js and Django!'}
+        return Response(content)
+
+class LogoutView(APIView):
+    permission_classes = (IsAuthenticated,)
+    
+    def post(self, request):
+        refresh_token = request.data.get("refresh_token")
+        if not refresh_token:
+            return Response({"error": "Le refresh_token est manquant."}, status=status.HTTP_400_BAD_REQUEST)            
+        try:
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+            return Response(status=status.HTTP_205_RESET_CONTENT)
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 class CollecteViewSet(viewsets.ModelViewSet):
     serializer_class = CollecteSerializer
@@ -46,8 +72,8 @@ class CombinedModelViewSet(viewsets.ModelViewSet):
         queryset = super().get_queryset()
         csp = self.request.query_params.get('csp')
         category = self.request.query_params.get('cat_achat')
-        start_date = self.request.query_params.get('start_date')  # Nouveau paramètre
-        end_date = self.request.query_params.get('end_date')  # Nouveau paramètre
+        start_date = self.request.query_params.get('start_date')  
+        end_date = self.request.query_params.get('end_date')  
 
         print(f"csp: {csp}, cat_achat: {category}, start_date: {start_date}, end_date: {end_date}")  # Impression de débogage
 

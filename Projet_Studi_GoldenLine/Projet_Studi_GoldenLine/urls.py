@@ -17,12 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from . import views
 from .views import index
 from django.urls import include, re_path
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import routers, permissions
 from indicateur.urls import router as indicateur_routeur
+from rest_framework_simplejwt import views as jwt_views
+from indicateur.views import HomeView, LogoutView
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -43,5 +46,9 @@ urlpatterns = [
    path('', include(router.urls)),
    path('swagger<format>/', schema_view.without_ui(cache_timeout=0), name='schema-json'),
    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-   path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),   
+   path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+   path('token/', jwt_views.TokenObtainPairView.as_view(), name ='token_obtain_pair'),
+   path('token/refresh/', jwt_views.TokenRefreshView.as_view(), name ='token_refresh'),
+   path('home/', HomeView.as_view(), name ='home'),
+   path('logout/', LogoutView.as_view(), name ='logout')
 ]
