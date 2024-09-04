@@ -1,3 +1,0 @@
-reactstrap
-bootstrap
-axios
