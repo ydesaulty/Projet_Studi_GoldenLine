@@ -1,5 +1,7 @@
 django
-psycopg2
-djangorestframework
-django-filter
-drf-yasg
+psycopg2>=2.9.6
+djangorestframework>=3.14.0
+django-filter>=23.2
+drf-yasg>=1.21.5
+djangorestframework-simplejwt>=5.2.2
+corsheaders>=3.14.0
