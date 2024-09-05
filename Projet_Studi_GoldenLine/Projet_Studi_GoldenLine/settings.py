@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-hb&)1m7*(=ehg*sdsxx)ypmbzp_%z@n+t%id(ly@@sdj*p&kq#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'yrae.pythonanywhere.com', '192.168.1.16']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -68,9 +68,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware'
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',
-]
+CORS_ALLOWED_ALL_ORIGINS = True
 
 SIMPLE_JWT = {
 'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
