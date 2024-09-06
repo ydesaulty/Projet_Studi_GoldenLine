@@ -4,7 +4,7 @@ djangorestframework>=3.14.0
 django-filter>=23.2
 drf-yasg>=1.21.5
 djangorestframework-simplejwt>=5.2.2
-corsheaders>=3.13.0
+corsheaders=3.13.0
 gunicorn
 whitenoise
 dj-database-url
