@@ -1,1 +1,1 @@
-web: gunicorn Projet_Studi_GoldenLine.wsgi
+web: gunicorn Projet_Studi_GoldenLine.wsgi:application
