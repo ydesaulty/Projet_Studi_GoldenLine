@@ -103,22 +103,10 @@ WSGI_APPLICATION = 'Projet_Studi_GoldenLine.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'bdd_bloc3_studi',
-        'USER': 'yrae_user',
-        'PASSWORD': 'Z1632522yde',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
 }
-
-DATABASES['default'].update(dj_database_url.config(default='postgres://localhost'))
-
-if 'DATABASE_URL' in os.environ:
-    DATABASES['default']['CONN_MAX_AGE'] = 600
-    DATABASES['default']['OPTIONS'] = {'sslmode': 'require'}
 
 
 # Password validation
