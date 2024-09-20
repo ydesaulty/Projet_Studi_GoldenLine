@@ -29,4 +29,4 @@ if 'TEST' in os.environ:
 DEBUG = True
 
 # Autres configurations spécifiques au développement local
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
