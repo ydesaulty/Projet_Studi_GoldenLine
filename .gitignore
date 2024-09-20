@@ -1,0 +1,54 @@
+# Python
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Django
+*.log
+media
+
+# Fichiers de configuration sensibles
+.env
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Fichiers d'éditeur
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Fichiers de sauvegarde
+*~
+*.bak
+
+# Fichiers de couverture de tests
+.coverage
+htmlcov/
+
+# Fichiers de cache
+.cache/
+.pytest_cache/
+
+# Fichiers statiques collectés
+/staticfiles/
+
+# Fichiers spécifiques au projet
+/Projet_Studi_GoldenLine/local_settings.py
+
+# Dossiers spécifiques au projet
+/__pycache__/
+/Projet_Studi_GoldenLine/__pycache__/
+/indicateur/__pycache__/
+
+# Fichiers statiques collectés
+/static/
+
+# Fichiers média uploadés
+/media/

@@ -53,7 +53,9 @@ REST_FRAMEWORK = {
         'django_filters.rest_framework.DjangoFilterBackend',
         'rest_framework.filters.SearchFilter'],
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication'
+        'rest_framework_simplejwt.authentication.JWTAuthentication'],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated'
 ]
 }
 
@@ -120,7 +122,7 @@ WSGI_APPLICATION = 'Projet_Studi_GoldenLine.wsgi.application'
 
 
 DATABASES = {
-    'default': dj_database_url.config(default='postgres://localhost')
+    'default': dj_database_url.config(default='postgres://yrae:Z1632522yde@localhost:5432/bdd_bloc3_studi')
 }
 
 
@@ -168,3 +170,9 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Importer les paramètres locaux s'ils existent
+try:
+    from local_settings import *
+except ImportError:
+    pass

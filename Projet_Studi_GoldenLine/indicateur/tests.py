@@ -66,7 +66,7 @@ class APITests(TestCase):
         )
 
     def test_get_combined_view(self):
-        response = self.client.get(reverse('combinedviewset-list'))
+        response = self.client.get(reverse('combinedviewSet-list'))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.data) > 0)
         
@@ -78,13 +78,13 @@ class APITests(TestCase):
             self.assertIn(field, first_item)
 
     def test_filter_combined_view_by_csp(self):
-        response = self.client.get(reverse('combinedviewset-list'), {'csp': 'Employes'})
+        response = self.client.get(reverse('combinedviewSet-list'), {'csp': 'Employes'})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         for item in response.data:
             self.assertEqual(item['csp_lbl'], 'Employes')
 
     def test_filter_combined_view_by_category(self):
-        response = self.client.get(reverse('combinedviewset-list'), {'cat_achat': 1})
+        response = self.client.get(reverse('combinedviewSet-list'), {'cat_achat': 1})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         for item in response.data:
             self.assertEqual(item['cat_achat'], 1)
@@ -92,7 +92,7 @@ class APITests(TestCase):
     def test_filter_combined_view_by_date(self):
         start_date = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
         end_date = datetime.now().strftime('%Y-%m-%d')
-        response = self.client.get(reverse('combinedviewset-list'), 
+        response = self.client.get(reverse('combinedviewSet-list'), 
                                    {'start_date': start_date, 'end_date': end_date})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         for item in response.data:
@@ -123,7 +123,7 @@ class AuthenticationTest(TestCase):
 
     def test_access_protected_view(self):
         # Tentative d'accès sans token
-        response = self.client.get(reverse('combinedviewset-list'))
+        response = self.client.get(reverse('combinedviewSet-list'))
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
         # Obtention du token
@@ -132,5 +132,5 @@ class AuthenticationTest(TestCase):
 
         # Accès avec token
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {token}')
-        response = self.client.get(reverse('combinedviewset-list'))
+        response = self.client.get(reverse('combinedviewSet-list'))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
