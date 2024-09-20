@@ -5,7 +5,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'bdd_bloc3_studi',
-        'USER': 'yrae',
+        'USER': 'yrae_user',
         'PASSWORD': 'Z1632522yde',
         'HOST': 'localhost',
         'PORT': '5432',
@@ -18,7 +18,7 @@ if 'TEST' in os.environ:
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'bdd_bloc3_studi',
-            'USER': 'yrae',
+            'USER': 'yrae_user',
             'PASSWORD': 'Z1632522yde',
             'HOST': 'localhost',
             'PORT': '5432',
@@ -29,4 +29,4 @@ if 'TEST' in os.environ:
 DEBUG = True
 
 # Autres configurations spécifiques au développement local
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
