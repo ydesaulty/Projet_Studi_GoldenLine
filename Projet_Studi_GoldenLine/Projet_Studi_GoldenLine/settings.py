@@ -120,7 +120,7 @@ WSGI_APPLICATION = 'Projet_Studi_GoldenLine.wsgi.application'
 
 
 DATABASES = {
-    'default': dj_database_url.config(default='postgres://yrae:Z1632522yde@localhost:5432/bdd_bloc3_studi')
+    'default': dj_database_url.config(default='postgres://localhost')
 }
 
 
