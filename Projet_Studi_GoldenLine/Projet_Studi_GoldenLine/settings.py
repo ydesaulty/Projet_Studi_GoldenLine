@@ -171,8 +171,8 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Importer les paramètres locaux
-try:
-    from local_settings import *
-except ImportError:
-    pass
+# Importer les paramètres locaux (pour les tests en local)
+#try:
+#    from local_settings import *
+#except ImportError:
+#    pass
