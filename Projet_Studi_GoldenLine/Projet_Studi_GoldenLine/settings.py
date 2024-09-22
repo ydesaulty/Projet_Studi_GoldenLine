@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-hb&)1m7*(=ehg*
 DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = ['*']
-
+#ALLOWED_HOSTS = ['gl-yrae-backend-24c518b70d2a.herokuapp.com', 'gl-yrae-frontend-76be11fe5035.herokuapp.com']
 
 # Application definition
 
